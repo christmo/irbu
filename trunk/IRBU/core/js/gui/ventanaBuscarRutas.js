@@ -5,7 +5,7 @@
 var contenedor;
 var win;
 var urlDatos ="core/php/gui/comboRutas.php";
-var urlRutas=urlDatos+"?op=0&id_rec=0";
+var urlRutas=urlDatos+"?op=B";//&id_rec=0";
 
 Ext.onReady(function(){
 
@@ -59,25 +59,29 @@ Ext.onReady(function(){
             }
             ]
         },{
-            layout:'column',
-            items:[{
-                columnWidth:.5,
-                layout: 'form',
-                items: [
-                comboRecorridos
-                ]
-            },{
-                columnWidth:.5,
-                layout: 'form',
-                items: [
-                comboRutas
-                ]
-            }]
+            //            layout:'column',
+            //            items:[{
+            //                columnWidth:.5,
+            //                layout: 'form',
+            //                items: [
+            //                comboRecorridos
+            //                ]
+            //            },{
+            //                columnWidth:.5,
+            //                layout: 'form',
+            //                items: [
+            //                comboRutas
+            //                ]
+            //            }]
+            layout: 'form',
+            items: [
+            comboRutas
+            ]
         }
         ],
 
         buttons: [{
-            text: 'Buscar',
+            text: 'Graficar Ruta',
             handler: function() {
                 contenedor.getForm().submit({
                     //url : 'php/monitoreo/datosRutaGpsSof.php',
@@ -113,7 +117,7 @@ Ext.onReady(function(){
 function recargarComboRutas(){
     comboRutas.reset();
     var radioTipo =  contenedor.getForm().getValues()['rbTipo'];
-    urlRutas = urlDatos +"?op="+ radioTipo +"&id_rec="+comboRecorridos.getValue();
+    urlRutas = urlDatos +"?op="+ radioTipo; //+"&id_rec="+comboRecorridos.getValue();
     storeRutas.proxy.conn.url = urlRutas;
     storeRutas.load();
 }
@@ -205,7 +209,7 @@ var comboRutas = new Ext.form.ComboBox({
     valueField: 'id',
     displayField: 'name',
     typeAhead: true,
-    mode: 'remote',
+    mode: 'local',
     triggerAction: 'all',
     tpl: resultadoTplRutas,
     itemSelector: 'div.search-item',
@@ -214,7 +218,7 @@ var comboRutas = new Ext.form.ComboBox({
     resizable:true,
     minListWidth:300,
     selectOnFocus:true,
-    width: 227
+    width: 455
 });
 
 /**
