@@ -20,7 +20,7 @@ Ext.onReady(function(){
             xtype: 'tbbutton',
             cls: 'x-btn-text-icon',
             icon: 'img/buscar.png',
-            text: 'B\xFAsqueda Aproximada',
+            text: 'B\xFAsqueda parada aproximada',
             handler: function(){
                 alert ('under construction...');
             }
@@ -28,7 +28,7 @@ Ext.onReady(function(){
             xtype: 'tbbutton',
             cls: 'x-btn-text-icon',
             icon: 'img/buscar1.png',
-            text: 'Buscar Ruta',
+            text: 'Buscar ruta',
             handler: function(){
                 ventanaBuscarRutas();
             }
@@ -36,9 +36,9 @@ Ext.onReady(function(){
             xtype: 'tbbutton',
             cls: 'x-btn-text-icon',
             icon: 'img/buscar2.png',
-            text: 'Buscar por Sector',
+            text: 'Paradas por hora y sector',
             handler: function(){
-                alert ('under construction...');
+                ventanaLocalizarParadaHora();
             }
         },'-',{
             xtype: 'tbbutton',
