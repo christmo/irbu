@@ -1,5 +1,6 @@
 /*
- * Permite desplegar la venta para buscar la ruta de los buses de la UTPL
+ * Permite desplegar la venta para buscar las paradas de los buses de la UTPL
+ * segun la ruta que se elija.
  */
 
 var contLocParadas;
@@ -119,6 +120,9 @@ Ext.onReady(function(){
     });
 });
 
+/**
+* Recarga el combo de rutas para la ventana de Localizar Paradas
+*/
 function recargarComboRutasParadas(){
     comboRutas.reset();
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
@@ -134,52 +138,7 @@ function limpiar_datos_paradas(){
 }
 
 /**
-* Obtine el id y el nombre del conductor de una unodad
-*/
-//var storeRecorridos = new Ext.data.JsonStore({
-//    autoDestroy: true,
-//    url: 'core/php/gui/comboRecorridos.php',
-//    root: 'recorridos',
-//    fields: ['id', 'name'],
-//    failure: function (form, action) {
-//        Ext.MessageBox.show({
-//            title: 'Error...',
-//            msg: 'No a ingresado correctamente vuelva a ingresar al sistema...',
-//            buttons: Ext.MessageBox.OK,
-//            icon: Ext.MessageBox.ERROR
-//        });
-//    }
-//});
-
-/**
-* Generar Combo Recorridos
-*/
-//var comboRecorridos = new Ext.form.ComboBox({
-//    store: storeRecorridos,
-//    fieldLabel: 'Recorridos',
-//    hiddenName: 'idRecorridos',
-//    valueField: 'id',
-//    displayField: 'name',
-//    typeAhead: true,
-//    mode: 'remote',
-//    triggerAction: 'all',
-//    emptyText:'Seleccionar recorrido...',
-//    allowBlank:false,
-//    resizable:true,
-//    minListWidth:300,
-//    selectOnFocus:true,
-//    width: 227,
-//    listeners: {
-//        change: function (ctl, val) {
-//            //var baja =  contLocParadas.getForm().getValues()['rbTipo'];
-//            recargarComboRutasParadas();
-//        //alert('cambio');
-//        }
-//    }
-//});
-
-/**
-* Obtine el id y el nombre del conductor de una unodad
+* Obtine el id y el nombre de las rutas
 */
 var storeRutas = new Ext.data.JsonStore({
     autoDestroy: true,
@@ -196,16 +155,18 @@ var storeRutas = new Ext.data.JsonStore({
     }
 });
 
-// Custom rendering Template
+/**
+ * permite ponerle una plantilla en la presentación del combo de rutas
+ * las clases de la hoja de estilos es "css/style.css"
+ */
 var resultadoTplRutas = new Ext.XTemplate(
     '<tpl for="."><div class="search-item">',
-    //'<h3><span>{id}</span></h3>',
     '{name}',
     '</div></tpl>'
     );
 
 /**
-* Carga el combo con las rutas segun el recorrido
+* Carga el combo con las rutas
 */
 var comboRutas = new Ext.form.ComboBox({
     store: storeRutas,
