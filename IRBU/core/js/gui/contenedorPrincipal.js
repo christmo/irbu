@@ -22,7 +22,7 @@ Ext.onReady(function(){
             icon: 'img/buscar.png',
             text: 'B\xFAsqueda parada aproximada',
             handler: function(){
-                alert ('under construction...');
+                capturarPuntoReferencia();
             }
         },'-',{
             xtype: 'tbbutton',

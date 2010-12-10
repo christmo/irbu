@@ -4,19 +4,27 @@ var map;
 // coordenadas para centrar Loja
 var lat = - 3.9912;
 var lon = - 79.20733;
-var zoom = 13;
+var zoom = 15;
 
 function init(){
+
+        //Limitar navegabilidad en el mapa
+    var extent = new OpenLayers.Bounds();
+    extent.extend(new OpenLayers.LonLat(-79.24441,-3.93400  ));
+    extent.extend(new OpenLayers.LonLat(-79.18123,-4.04600));
+    extent.transform( new OpenLayers.Projection( "EPSG:4326" ),
+        new OpenLayers.Projection( "EPSG:900913" ));
 
     // Mapa
     map = new OpenLayers.Map('map',
     {
         controls : [],
+        restrictedExtent : extent,
         displayProjection : new OpenLayers.Projection( "EPSG:4326" ),
         projection : new OpenLayers.Projection( "EPSG:4326" ),
         units : 'm',
         numZoomLevels : 19,
-        maxResolution : 'auto'
+        maxResolution : 'auto'        
     });
 
     layer = new OpenLayers.Layer.OSM( "Mapa de Loja");

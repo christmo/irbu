@@ -6,7 +6,7 @@
         <title>IRBU</title>
         <link rel="shortcut icon" href="img/taxi.png" type="image/x-icon" />
 
-        <!--Maquetacion-->
+        <!--Maquetacion-->      
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <!--Ext-JS-->
         <link rel="stylesheet" type="text/css" href="css/ext-js/resources/css/ext-all.css" />
@@ -33,12 +33,23 @@
         }
         ?>
 
+             <!--  RQ1 TRATAMIENTO DE IMAGENES  -->
+        <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.lightbox-0.5.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
+        <script type='text/javascript'>
+            $(function() {
+                $('a').lightBox();
+            });
+        </script>
+
+
     </head>
 
-    <body onload="init()">
+    <body onload="init()">      
         <div id="map">
         </div>
-
+     
     </body>
     <script type="text/javascript" src="dll/js/ext-js/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="dll/js/ext-js/ext-all.js"></script>
@@ -46,6 +57,12 @@
     <!--Ventanas-->
     <script type="text/javascript" src="core/js/gui/ventanaBuscarRutas.js"></script>
     <script type="text/javascript" src="core/js/gui/ventanaLocalizarParadaHora.js"></script>
+
+    <!--  RQ 3  -->
+    <script type="text/javascript" src="dll/js/action_popup_paradas.js"></script>
+    <script type="text/javascript" src="core/js/gui/RQ3_busqueda_aprox.js"></script>
+    <script type="text/javascript" src="core/js/core/RQ3_AreaBusqueda.js"></script>
+
     <!-- spinner -->
     <link rel="stylesheet" type="text/css" href="dll/js/ext-js/ux/spinner/Spinner.css"/>
     <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/Spinner.js"></script>
