@@ -33,25 +33,14 @@
         }
         ?>
 
-        <!--  RQ1 TRATAMIENTO DE IMAGENES  -->
-        <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.js"></script>
-        <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.lightbox-0.5.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
-        <script type='text/javascript'>
-            $(function() {
-                $('a').lightBox();
-            });
-        </script>
-
-
     </head>
 
     <body onload="init()">
-        
-            <div id="map" >
-            </div>
 
+        <div id="map" >
+        </div>
     </body>
+    
     <script type="text/javascript" src="dll/js/ext-js/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="dll/js/ext-js/ext-all.js"></script>
     <script type="text/javascript" src="core/js/gui/contenedorPrincipal.js"></script>
@@ -68,5 +57,15 @@
     <link rel="stylesheet" type="text/css" href="dll/js/ext-js/ux/spinner/Spinner.css"/>
     <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/Spinner.js"></script>
     <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/SpinnerStrategy.js"></script>
+
+    <!--  RQ1 TRATAMIENTO DE IMAGENES  -->
+    <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
+    <script type='text/javascript'>
+        $(function() {
+            $('a').lightBox();
+        });
+    </script>
 </html>
 
