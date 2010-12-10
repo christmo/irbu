@@ -45,5 +45,10 @@
     <script type="text/javascript" src="core/js/gui/contenedorPrincipal.js"></script>
     <!--Ventanas-->
     <script type="text/javascript" src="core/js/gui/ventanaBuscarRutas.js"></script>
+    <script type="text/javascript" src="core/js/gui/ventanaLocalizarParadaHora.js"></script>
+    <!-- spinner -->
+    <link rel="stylesheet" type="text/css" href="dll/js/ext-js/ux/spinner/Spinner.css"/>
+    <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/Spinner.js"></script>
+    <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/SpinnerStrategy.js"></script>
 </html>
 
