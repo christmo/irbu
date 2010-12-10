@@ -1,15 +1,14 @@
-/* 
+/*
  * Permite desplegar la venta para buscar la ruta de los buses de la UTPL
  */
 
-var contBuscarRutas;
-var winBuscarRutas;
-var phpComboRutas = "core/php/gui/comboRutas.php";
-var urlBuscarRutas = phpComboRutas+"?op=B";//&id_rec=0";
+var contLocParadas;
+var winLocParadaHorSec;
+var urlRutas = phpComboRutas+"?op=B";
 
 Ext.onReady(function(){
 
-    contBuscarRutas = new Ext.FormPanel({
+    contLocParadas = new Ext.FormPanel({
         labelAlign: 'top',
         frame:true,
         bodyStyle:'padding:5px 5px 0',
@@ -27,11 +26,9 @@ Ext.onReady(function(){
                     boxLabel: 'Baja de la UTPL',
                     name: 'rbTipo',
                     inputValue: 'B',
-                    //checked: true,
                     listeners: {
                         check: function (ctl, val) {
-                            //var baja =  contBuscarRutas.getForm().getValues()['rbTipo'];
-                            recargarComboRutas();
+                            recargarComboRutasParadas();
                         }
                     }
                 },{
@@ -40,8 +37,7 @@ Ext.onReady(function(){
                     inputValue: 'R',
                     listeners: {
                         check: function (ctl, val) {
-                            //var sube =  contBuscarRutas.getForm().getValues()['rbTipo'];
-                            recargarComboRutas();
+                            recargarComboRutasParadas();
                         }
                     }
                 },{
@@ -50,8 +46,7 @@ Ext.onReady(function(){
                     inputValue: 'BR',
                     listeners: {
                         check: function (ctl, val) {
-                            //var subebaja =  contBuscarRutas.getForm().getValues()['rbTipo'];
-                            recargarComboRutas();
+                            recargarComboRutasParadas();
                         }
                     }
                 }
@@ -59,31 +54,41 @@ Ext.onReady(function(){
             }
             ]
         },{
-            //            layout:'column',
-            //            items:[{
-            //                columnWidth:.5,
-            //                layout: 'form',
-            //                items: [
-            //                comboRecorridos
-            //                ]
-            //            },{
-            //                columnWidth:.5,
-            //                layout: 'form',
-            //                items: [
-            //                cbxBuscarRutas
-            //                ]
-            //            }]
-            layout: 'form',
-            items: [
-            cbxBuscarRutas
-            ]
+            layout:'column',
+            items:[{
+                columnWidth:.25,
+                layout: 'form',
+                bodyStyle:'padding:0px 0px 0px 5px',
+                items: [
+                new Ext.ux.form.Spinner(
+                {
+                    fieldLabel: 'Hora de Recorrido',
+                    name: 'hora',
+                    value: '06:00',
+                    strategy: new Ext.ux.form.Spinner.TimeStrategy({
+                        minValue:'06:30',
+                        maxValue:'21:00',
+                        incrementValue: 30
+                    }),
+                    allowBlank:false,
+                    emptyText:'Hora de recorrido...',
+                    anchor:'98%'
+                })
+                ]
+            },{
+                columnWidth:.75,
+                layout: 'form',
+                items: [
+                comboRutas
+                ]
+            }]
         }
         ],
 
         buttons: [{
-            text: 'Graficar Ruta',
+            text: 'Graficar Paradas',
             handler: function() {
-                contBuscarRutas.getForm().submit({
+                contLocParadas.getForm().submit({
                     //url : 'php/monitoreo/datosRutaGpsSof.php',
                     method:'POST',
                     waitMsg : 'Comprobando Datos...',
@@ -98,39 +103,39 @@ Ext.onReady(function(){
                     success: function (form, action) {
                         var resultado = Ext.util.JSON.decode(action.response.responseText);
 
-                        //dibujar la ruta en el mapa
+                        // dibujar la ruta en el mapa
                         // generarTrazado(resultado.datos.coordenadas);
                         lienzosRecorridoHistorico(resultado.datos.coordenadas);
 
                         //Limpia los datos del formulario y lo oculta
-                        limpiar_datos_rutas();
+                        limpiar_datos_paradas();
                     }
                 });
             }
         },{
             text: 'Cancelar',
-            handler: limpiar_datos_rutas
+            handler: limpiar_datos_paradas
         }]
     });
 });
 
-function recargarComboRutas(){
-    cbxBuscarRutas.reset();
-    var radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
-    urlBuscarRutas = phpComboRutas +"?op="+ radioTipo; //+"&id_rec="+comboRecorridos.getValue();
-    storeBuscarRutas.proxy.conn.url = urlBuscarRutas;
-    storeBuscarRutas.load();
+function recargarComboRutasParadas(){
+    comboRutas.reset();
+    var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
+    urlRutas = phpComboRutas +"?op="+ radioTipo; 
+    storeRutas.proxy.conn.url = urlRutas;
+    storeRutas.load();
 }
 
 /* oculta la venta y limpia los datos no guardados */
-function limpiar_datos_rutas(){
-    contBuscarRutas.getForm().reset();
-    winBuscarRutas.hide();
+function limpiar_datos_paradas(){
+    contLocParadas.getForm().reset();
+    winLocParadaHorSec.hide();
 }
 
 /**
- * Obtine el id y el nombre del conductor de una unodad
- */
+* Obtine el id y el nombre del conductor de una unodad
+*/
 //var storeRecorridos = new Ext.data.JsonStore({
 //    autoDestroy: true,
 //    url: 'core/php/gui/comboRecorridos.php',
@@ -147,8 +152,8 @@ function limpiar_datos_rutas(){
 //});
 
 /**
- * Generar Combo Recorridos
- */
+* Generar Combo Recorridos
+*/
 //var comboRecorridos = new Ext.form.ComboBox({
 //    store: storeRecorridos,
 //    fieldLabel: 'Recorridos',
@@ -166,19 +171,19 @@ function limpiar_datos_rutas(){
 //    width: 227,
 //    listeners: {
 //        change: function (ctl, val) {
-//            //var baja =  contBuscarRutas.getForm().getValues()['rbTipo'];
-//            recargarComboRutas();
+//            //var baja =  contLocParadas.getForm().getValues()['rbTipo'];
+//            recargarComboRutasParadas();
 //        //alert('cambio');
 //        }
 //    }
 //});
 
 /**
- * Obtine el id y el nombre del conductor de una unodad
- */
-var storeBuscarRutas = new Ext.data.JsonStore({
+* Obtine el id y el nombre del conductor de una unodad
+*/
+var storeRutas = new Ext.data.JsonStore({
     autoDestroy: true,
-    url: urlBuscarRutas,
+    url: urlRutas,
     root: 'rutas',
     fields: ['id', 'name'],
     failure: function (form, action) {
@@ -200,10 +205,10 @@ var resultadoTplRutas = new Ext.XTemplate(
     );
 
 /**
- * Carga el combo con las rutas segun el recorrido
- */
-var cbxBuscarRutas = new Ext.form.ComboBox({
-    store: storeBuscarRutas,
+* Carga el combo con las rutas segun el recorrido
+*/
+var comboRutas = new Ext.form.ComboBox({
+    store: storeRutas,
     fieldLabel: 'Rutas',
     hiddenName: 'idRutas',
     valueField: 'id',
@@ -218,25 +223,25 @@ var cbxBuscarRutas = new Ext.form.ComboBox({
     resizable:true,
     minListWidth:300,
     selectOnFocus:true,
-    width: 455
+    width: 340
 });
 
 /**
- * Muestra la ventana para buscar una ruta
- * @return NO retorna valor
- */
-function ventanaBuscarRutas(){
-    if(!winBuscarRutas){
-        winBuscarRutas = new Ext.Window({
+* Muestra la ventana para buscar una ruta
+* @return NO retorna valor
+*/
+function ventanaLocalizarParadaHora(){
+    if(!winLocParadaHorSec){
+        winLocParadaHorSec = new Ext.Window({
             layout:'fit',
-            title:'Buscar Ruta',
+            title:'Buscar paradas por hora y sector',
             resizable : false,
             width:500,
             height:180,
             closeAction:'hide',
             plain: false,
-            items: [contBuscarRutas]
+            items: [contLocParadas]
         });
     }
-    winBuscarRutas.show(this);
+    winLocParadaHorSec.show(this);
 }
