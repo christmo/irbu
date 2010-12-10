@@ -30,7 +30,6 @@ Ext.onReady(function(){
                     //checked: true,
                     listeners: {
                         check: function (ctl, val) {
-                            //var baja =  contBuscarRutas.getForm().getValues()['rbTipo'];
                             recargarComboRutas();
                         }
                     }
@@ -40,7 +39,6 @@ Ext.onReady(function(){
                     inputValue: 'R',
                     listeners: {
                         check: function (ctl, val) {
-                            //var sube =  contBuscarRutas.getForm().getValues()['rbTipo'];
                             recargarComboRutas();
                         }
                     }
@@ -50,7 +48,6 @@ Ext.onReady(function(){
                     inputValue: 'BR',
                     listeners: {
                         check: function (ctl, val) {
-                            //var subebaja =  contBuscarRutas.getForm().getValues()['rbTipo'];
                             recargarComboRutas();
                         }
                     }
@@ -59,20 +56,6 @@ Ext.onReady(function(){
             }
             ]
         },{
-            //            layout:'column',
-            //            items:[{
-            //                columnWidth:.5,
-            //                layout: 'form',
-            //                items: [
-            //                comboRecorridos
-            //                ]
-            //            },{
-            //                columnWidth:.5,
-            //                layout: 'form',
-            //                items: [
-            //                cbxBuscarRutas
-            //                ]
-            //            }]
             layout: 'form',
             items: [
             cbxBuscarRutas
@@ -114,6 +97,10 @@ Ext.onReady(function(){
     });
 });
 
+/**
+* Permite recargar el combo de nombres de rutas con nueva informacion
+* segun los parametros que se le envie en la url a traves de GET
+*/
 function recargarComboRutas(){
     cbxBuscarRutas.reset();
     var radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
@@ -129,52 +116,7 @@ function limpiar_datos_rutas(){
 }
 
 /**
- * Obtine el id y el nombre del conductor de una unodad
- */
-//var storeRecorridos = new Ext.data.JsonStore({
-//    autoDestroy: true,
-//    url: 'core/php/gui/comboRecorridos.php',
-//    root: 'recorridos',
-//    fields: ['id', 'name'],
-//    failure: function (form, action) {
-//        Ext.MessageBox.show({
-//            title: 'Error...',
-//            msg: 'No a ingresado correctamente vuelva a ingresar al sistema...',
-//            buttons: Ext.MessageBox.OK,
-//            icon: Ext.MessageBox.ERROR
-//        });
-//    }
-//});
-
-/**
- * Generar Combo Recorridos
- */
-//var comboRecorridos = new Ext.form.ComboBox({
-//    store: storeRecorridos,
-//    fieldLabel: 'Recorridos',
-//    hiddenName: 'idRecorridos',
-//    valueField: 'id',
-//    displayField: 'name',
-//    typeAhead: true,
-//    mode: 'remote',
-//    triggerAction: 'all',
-//    emptyText:'Seleccionar recorrido...',
-//    allowBlank:false,
-//    resizable:true,
-//    minListWidth:300,
-//    selectOnFocus:true,
-//    width: 227,
-//    listeners: {
-//        change: function (ctl, val) {
-//            //var baja =  contBuscarRutas.getForm().getValues()['rbTipo'];
-//            recargarComboRutas();
-//        //alert('cambio');
-//        }
-//    }
-//});
-
-/**
- * Obtine el id y el nombre del conductor de una unodad
+ * Obtine el id y el nombre de las rutas de la BD
  */
 var storeBuscarRutas = new Ext.data.JsonStore({
     autoDestroy: true,
@@ -191,7 +133,10 @@ var storeBuscarRutas = new Ext.data.JsonStore({
     }
 });
 
-// Custom rendering Template
+/**
+ * permite ponerle una plantilla en la presentación del combo de rutas
+ * las clases de la hoja de estilos es "css/style.css"
+ */
 var resultadoTplRutas = new Ext.XTemplate(
     '<tpl for="."><div class="search-item">',
     //'<h3><span>{id}</span></h3>',
@@ -200,7 +145,7 @@ var resultadoTplRutas = new Ext.XTemplate(
     );
 
 /**
- * Carga el combo con las rutas segun el recorrido
+ * Carga el combo con las rutas
  */
 var cbxBuscarRutas = new Ext.form.ComboBox({
     store: storeBuscarRutas,
