@@ -2,6 +2,9 @@
 
 require_once('../../../dll/php/conexionBD.php');
 
+extract($_POST);
+extract($_GET);
+
 $salida = "{failure:true}";
 
 $consultaSql = "
