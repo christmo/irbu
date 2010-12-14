@@ -117,10 +117,10 @@ function buscarParadas(){
         success: function (result) {
             var r = Ext.util.JSON.decode(result.responseText);
             if(typeof r.datos != "undefined"){
-            /**
-             * Dibuja las paradas en el mapa
-             */
-                dibujarParadas(r.datos.coordenadas);
+                /**
+                * Dibuja las paradas en el mapa
+                */
+                lienzosRecorridoHistorico(r.datos.coordenadas);
             }
         },
         timeout: 1000,
