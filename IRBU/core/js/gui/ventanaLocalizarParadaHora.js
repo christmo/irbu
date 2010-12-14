@@ -5,7 +5,9 @@
 
 var contLocParadas;
 var winLocParadaHorSec;
-var urlRutas = phpComboRutas+"?op=B";
+var radioTipo = 'B';
+var phpComboRutas = "core/php/gui/comboRutas.php";
+var urlRutas = phpComboRutas+"?op="+radioTipo;//&id_rec=0";
 
 Ext.onReady(function(){
 
@@ -90,9 +92,13 @@ Ext.onReady(function(){
             text: 'Graficar Paradas',
             handler: function() {
                 contLocParadas.getForm().submit({
-                    //url : 'php/monitoreo/datosRutaGpsSof.php',
+                    url : 'core/php/core/RQ4_ParadasRuta.php',
                     method:'POST',
                     waitMsg : 'Comprobando Datos...',
+                    params:{
+                        id_ruta: id_ruta,
+                        tipo: op
+                    },
                     failure: function (form, action) {
                         Ext.MessageBox.show({
                             title: 'Error...',
@@ -104,9 +110,10 @@ Ext.onReady(function(){
                     success: function (form, action) {
                         var resultado = Ext.util.JSON.decode(action.response.responseText);
 
-                        // dibujar la ruta en el mapa
-                        // generarTrazado(resultado.datos.coordenadas);
-                        lienzosRecorridoHistorico(resultado.datos.coordenadas);
+                        limpiarCapas();
+
+                        // Dibujar las paradas en el mapa
+                        dibujarParadas(resultado.datos.coordenadas);
 
                         //Limpia los datos del formulario y lo oculta
                         limpiar_datos_paradas();
@@ -126,7 +133,8 @@ Ext.onReady(function(){
 function recargarComboRutasParadas(){
     comboRutas.reset();
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
-    urlRutas = phpComboRutas +"?op="+ radioTipo; 
+    urlRutas = phpComboRutas +"?op="+ radioTipo;
+    op = radioTipo;
     storeRutas.proxy.conn.url = urlRutas;
     storeRutas.load();
 }
@@ -143,6 +151,7 @@ function limpiar_datos_paradas(){
 var storeRutas = new Ext.data.JsonStore({
     autoDestroy: true,
     url: urlRutas,
+    method:'POST',
     root: 'rutas',
     fields: ['id', 'name'],
     failure: function (form, action) {
@@ -184,8 +193,15 @@ var comboRutas = new Ext.form.ComboBox({
     resizable:true,
     minListWidth:300,
     selectOnFocus:true,
-    width: 340
+    width: 340,
+    listeners:{
+        'select': seleccionarRuta
+    }
 });
+
+function seleccionarRuta(){
+    id_ruta = comboRutas.getValue();
+}
 
 /**
 * Muestra la ventana para buscar una ruta
