@@ -36,17 +36,21 @@
     </head>
 
     <body onload="init()">
-
         <div id="map" >
         </div>
     </body>
-    
+
     <script type="text/javascript" src="dll/js/ext-js/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="dll/js/ext-js/ext-all.js"></script>
     <script type="text/javascript" src="core/js/gui/contenedorPrincipal.js"></script>
     <!--Ventanas-->
     <script type="text/javascript" src="core/js/gui/ventanaBuscarRutas.js"></script>
     <script type="text/javascript" src="core/js/gui/ventanaLocalizarParadaHora.js"></script>
+
+    <!-- RQ 2 -->
+    <script type="text/javascript" src="core/js/core/RQ2_TrazarRuta.js"></script>
+    <script type="text/javascript" src="core/js/core/RQ4_DibujarParadas.js"></script>
+    <script type="text/javascript" src="core/js/core/LimpiarCapas.js"></script>
 
     <!--  RQ 3  -->
     <script type="text/javascript" src="dll/js/action_popup_paradas.js"></script>
