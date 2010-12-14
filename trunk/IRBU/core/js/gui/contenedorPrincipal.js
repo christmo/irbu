@@ -6,8 +6,8 @@
 Ext.onReady(function(){
 
     /**
-                 * Contenido del panel Central
-                 */
+     * Contenido del panel Central
+     */
     var barraHerramientas = {
         id: 'content-panel',
         region: 'north', // this is what makes this panel into a region
@@ -46,7 +46,7 @@ Ext.onReady(function(){
             icon: 'img/limpiar.png',
             text: 'Limpiar Mapa',
             handler: function(){
-                alert ('under construction...');
+                limpiarCapas();
             }
         }]
 
