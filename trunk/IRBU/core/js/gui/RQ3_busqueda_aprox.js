@@ -54,7 +54,7 @@ Ext.onReady(function(){
 
                 if (validMeters) {
 
-                    cleanParadasAprox();
+                    limpiarCapaParadas();
 
                     RQ3Panel.getForm().submit({
                         url : 'core/php/core/RQ3_paradas_cercanas.php?x='+xpos+'&y='+ypos,

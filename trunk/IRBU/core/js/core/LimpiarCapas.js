@@ -15,7 +15,7 @@ function limpiarCapas(){
  * Limpia la capa de Recorridos, solo el trazado de las rutas de los buses
  */
 function limpiarCapaRecorridos(){
-    lienzoRecorridos.removeAllFeatures();
+    lienzoRecorridos.destroyFeatures();
     removerMarcas();
 }
 
@@ -23,7 +23,7 @@ function limpiarCapaRecorridos(){
  * Limpia la capa de las Paradas, los puntos de paradas de los Buses
  */
 function limpiarCapaParadas(){
-    lienzoParadas.removeAllFeatures();
+    lienzoParadas.destroyFeatures();
 }
 
 /**
