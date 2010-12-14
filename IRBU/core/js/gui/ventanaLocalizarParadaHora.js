@@ -113,7 +113,7 @@ Ext.onReady(function(){
                         limpiarCapas();
 
                         // Dibujar las paradas en el mapa
-                        dibujarParadas(resultado.datos.coordenadas);
+                        lienzosRecorridoHistorico(resultado.datos.coordenadas);
 
                         //Limpia los datos del formulario y lo oculta
                         limpiar_datos_paradas();

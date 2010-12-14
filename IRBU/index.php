@@ -49,7 +49,6 @@
 
     <!-- RQ 2 -->
     <script type="text/javascript" src="core/js/core/RQ2_TrazarRuta.js"></script>
-    <script type="text/javascript" src="core/js/core/RQ4_DibujarParadas.js"></script>
     <script type="text/javascript" src="core/js/core/LimpiarCapas.js"></script>
 
     <!--  RQ 3  -->
