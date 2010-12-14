@@ -58,12 +58,3 @@ function unselectParada( feature ) {
 function onCloseParada( feature ) {
     selectFeatures.unselect( feature );
 }
-
-/**
- * Limpiar luego de calcular paradas por aproximacion
- * TODO : Si se utiliza el mismo lienzo para las rutas
- * este seria el mismo metodo de limpiar el mapa. 
- */
-function cleanParadasAprox() {
-    lienzoParadas.destroyFeatures();
-}
