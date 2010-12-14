@@ -72,8 +72,7 @@ function lienzosRecorridoHistorico(coordPuntos){
             ref : col[4],
             img : col[5],
             poppedup : false
-        }
-        );
+        });
 
         features.push(puntoMap);
     }
