@@ -4,8 +4,9 @@
 
 var contBuscarRutas;
 var winBuscarRutas;
+var radioTipo = 'B';
 var phpComboRutas = "core/php/gui/comboRutas.php";
-var urlBuscarRutas = phpComboRutas+"?op=B";//&id_rec=0";
+var urlBuscarRutas = phpComboRutas+"?op="+radioTipo;//&id_rec=0";
 
 Ext.onReady(function(){
 
@@ -67,9 +68,13 @@ Ext.onReady(function(){
             text: 'Graficar Ruta',
             handler: function() {
                 contBuscarRutas.getForm().submit({
-                    //url : 'php/monitoreo/datosRutaGpsSof.php',
+                    url : 'core/php/core/RQ2_TrazadoRutas.php',
                     method:'POST',
                     waitMsg : 'Comprobando Datos...',
+                    params:{
+                        id_ruta: id_ruta,
+                        tipo: radioTipo
+                    },
                     failure: function (form, action) {
                         Ext.MessageBox.show({
                             title: 'Error...',
@@ -81,9 +86,14 @@ Ext.onReady(function(){
                     success: function (form, action) {
                         var resultado = Ext.util.JSON.decode(action.response.responseText);
 
+                        //Limpia las capas antes de hacer una nueva consulta
+                        limpiarCapas();
+
                         //dibujar la ruta en el mapa
-                        // generarTrazado(resultado.datos.coordenadas);
-                        lienzosRecorridoHistorico(resultado.datos.coordenadas);
+                        dibujarTrazado(resultado.datos.coordenadas);
+
+                        //dibujar las paradas en esa ruta
+                        buscarParadas();
 
                         //Limpia los datos del formulario y lo oculta
                         limpiar_datos_rutas();
@@ -97,13 +107,37 @@ Ext.onReady(function(){
     });
 });
 
+function buscarParadas(){
+    /**
+     * Peticion de las paradas segun una ruta seleccionada
+     */
+    Ext.Ajax.request({
+        url: 'core/php/core/RQ4_ParadasRuta.php',
+        method: 'POST',
+        success: function (result) {
+            var r = Ext.util.JSON.decode(result.responseText);
+            if(typeof r.datos != "undefined"){
+            /**
+             * Dibuja las paradas en el mapa
+             */
+                dibujarParadas(r.datos.coordenadas);
+            }
+        },
+        timeout: 1000,
+        params: {
+            id_ruta: id_ruta,
+            tipo: radioTipo
+        }
+    });  
+}
+
 /**
 * Permite recargar el combo de nombres de rutas con nueva informacion
 * segun los parametros que se le envie en la url a traves de GET
 */
 function recargarComboRutas(){
     cbxBuscarRutas.reset();
-    var radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
+    radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
     urlBuscarRutas = phpComboRutas +"?op="+ radioTipo; //+"&id_rec="+comboRecorridos.getValue();
     storeBuscarRutas.proxy.conn.url = urlBuscarRutas;
     storeBuscarRutas.load();
@@ -163,8 +197,15 @@ var cbxBuscarRutas = new Ext.form.ComboBox({
     resizable:true,
     minListWidth:300,
     selectOnFocus:true,
-    width: 455
+    width: 455,
+    listeners:{
+        'select': seleccionarRuta
+    }
 });
+
+function seleccionarRuta(){
+    id_ruta = cbxBuscarRutas.getValue();
+}
 
 /**
  * Muestra la ventana para buscar una ruta
