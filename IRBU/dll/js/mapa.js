@@ -97,7 +97,7 @@ function init(){
 function cargarCapas() {
     var stylePuntos = new OpenLayers.StyleMap( {
         fillOpacity : 0.7,
-        pointRadius: 8,
+        pointRadius: 9,
         idBD : "${idBD}",
         label: "${idBD}",
         lat : "${lat}",
@@ -107,6 +107,8 @@ function cargarCapas() {
         img : "${img}",
         fontColor: "white",
         fillColor: "#003DF5", //black
+        strokeColor: "#FFFFFF",
+        strokeOpacity: 0.7,
         fontSize: "12px",
         fontFamily: "Courier New, monospace",
         fontWeight: "bold"
