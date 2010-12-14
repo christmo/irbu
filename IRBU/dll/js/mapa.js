@@ -6,7 +6,9 @@ var lat = - 3.9912;
 var lon = - 79.20733;
 var zoom = 15;
 var lienzoParadas;
+var lienzoRecorridos;
 var capturarPosicion;
+var markerInicioFin;
 
 function init(){
     
@@ -141,4 +143,24 @@ function cargarCapas() {
     map.addControl( selectFeatures );
     selectFeatures.activate();
 
+    /**
+     * Inicializa el mapa para que permita graficar los recorridos de los buses
+     */
+    capaRecorridos();
+
 }
+
+/**
+ * Activa la capa de recorridos para poder dibujar en el mapa estos
+ */
+function capaRecorridos(){
+    /**
+     * Inicializar la capa para los recorridos
+     */
+    lienzoRecorridos = new OpenLayers.Layer.Vector("Recorridos");
+    markerInicioFin = new OpenLayers.Layer.Markers( "Inicio-Fin" );
+    map.addLayer(lienzoRecorridos);
+    map.addLayer(markerInicioFin);
+}
+
+
