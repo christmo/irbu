@@ -93,4 +93,11 @@ function cerrarConexion() {
     @mysql_close($_SESSION["idBD"]);
 }
 
+/** Consulta JSON
+ *
+ */
+function consultaJSON($sql){
+    return mysql_query($sql, $_SESSION["idBD"]);
+}
+
 ?>

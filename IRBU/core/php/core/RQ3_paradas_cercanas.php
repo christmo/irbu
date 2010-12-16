@@ -19,6 +19,7 @@ consulta($consultaSql);
 $resulset = variasFilas();
 
 $salida = "{failure:true}";
+$orden = 1;
 if (count($resulset) >= 1) {
     $datos = "";
     for ($i = 0; $i < count($resulset); $i++) {
@@ -29,7 +30,9 @@ if (count($resulset) >= 1) {
                 . $fila["LAT"] . "%"
                 . $fila["DIRECCION"] . "%"
                 . $fila["REFERENCIA"] . "%"
-                . $fila["DIR_IMG"] . "#";
+                . $fila["DIR_IMG"] . "%"
+                . $orden . "#";
+        $orden = $orden + 1;
     }
     $salida = "{success:true,datos: { coordenadas: '$datos' }}";
 }

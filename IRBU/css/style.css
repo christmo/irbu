@@ -27,7 +27,10 @@ html,body{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 11px;
 }
+#infoparada{
 
+    color: #0000ff;
+}
 .search-item {
     font:normal 11px tahoma, arial, helvetica, sans-serif;
     padding:3px 10px 3px 10px;

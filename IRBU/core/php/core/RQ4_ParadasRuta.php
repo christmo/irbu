@@ -5,7 +5,7 @@ require_once('../../../dll/php/conexionBD.php');
 
 extract($_POST);
 
-$consultaSql = "SELECT RP.ID_PARADA, LON,LAT,DIRECCION,REFERENCIA, DIR_IMG FROM RUTA_PARADA RP, RUTAS R, PARADAS P WHERE RP.ID_RUTA = R.ID_RUTA AND RP.ID_PARADA = P.ID_PARADA AND RP.ID_RUTA=" . $id_ruta ." AND R.TIPO = '" . $tipo . "'";
+$consultaSql = "SELECT RP.ID_PARADA, LON,LAT,DIRECCION,REFERENCIA, DIR_IMG, RP.ORDEN FROM RUTA_PARADA RP, RUTAS R, PARADAS P WHERE RP.ID_RUTA = R.ID_RUTA AND RP.ID_PARADA = P.ID_PARADA AND RP.ID_RUTA=" . $id_ruta ." AND R.TIPO = '" . $tipo . "'";
 
 consulta($consultaSql);
 $resulset = variasFilas();
@@ -21,7 +21,8 @@ if (count($resulset) >= 1) {
                 . $fila["LAT"] . "%"
                 . $fila["DIRECCION"] . "%"
                 . $fila["REFERENCIA"] . "%"
-                . $fila["DIR_IMG"] . "#";
+                . $fila["DIR_IMG"] . "%"
+                . $fila["ORDEN"] ."#";
     }
     $salida = "{success:true,datos: { coordenadas: '$datos' }}";
 }
