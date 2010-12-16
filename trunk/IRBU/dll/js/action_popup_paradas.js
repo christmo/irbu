@@ -2,6 +2,13 @@
 var Default_Img = 'img/default_parada.jpg';
 
 /**
+ * Comment
+ */
+function test() {
+    alert("enlazado");
+}
+
+/**
  * Comportamiento de Selección
  */
 function selectParada( feature ) {
@@ -9,17 +16,21 @@ function selectParada( feature ) {
     var dir = feature.attributes.dir;
     var ref = feature.attributes.ref;
     var img = feature.attributes.img;
+    var idBD = feature.attributes.idBD;
     if (!img) {
         //no tiene imagen
         img = Default_Img;
     }
 //style='position: absolute;'
-    var contenidoPopUp = "<div id='popid'  >"+dir+"<br /><center><a href='" + img + "' title='"+dir+"'><img src='"+img+"' width='100' height='75'/></a></center>"+ref+"</div>";
+    var contenidoPopUp = "<div id='popid'  >"+dir+"<br /><center>"
+        + "<a href='" + img + "' title='"+dir+"'><img src='"
+        + img + "' width='100' height='75'/></a></center>"
+        + ref + " <br /><center><div id= 'infoparada' onclick='RQ2_PopUP_getWin("+idBD+")'><b> Hora y Ruta</b></div></center></div>";
 
     var popup =
     new OpenLayers.Popup.AnchoredBubble( null,
         new OpenLayers.LonLat( feature.geometry.x, feature.geometry.y ),
-        new OpenLayers.Size(120,130),
+        new OpenLayers.Size(120,145),
         contenidoPopUp,
         null,
         true,

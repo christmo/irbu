@@ -47,6 +47,8 @@
     <script type="text/javascript" src="core/js/gui/ventanaBuscarRutas.js"></script>
     <script type="text/javascript" src="core/js/gui/ventanaLocalizarParadaHora.js"></script>
 
+    <script type="text/javascript" src="core/js/gui/RQ1_POPUP.js"></script>
+    
     <!-- RQ 2 -->
     <script type="text/javascript" src="core/js/core/RQ2_TrazarRuta.js"></script>
     <script type="text/javascript" src="core/js/core/LimpiarCapas.js"></script>

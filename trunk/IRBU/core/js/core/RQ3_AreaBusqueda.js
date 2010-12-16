@@ -62,10 +62,12 @@ function lienzosRecorridoHistorico(coordPuntos){
         pt.transform( new OpenLayers.Projection( "EPSG:4326" ),
             new OpenLayers.Projection( "EPSG:900913" ) );
 
-        //puntosRuta.push(pt);
+        //    0          1       2    3        4         5       6
+        //ID_PARADA, DIRECCION, LAT, LON, REFERENCIA, DIR_IMG, ORDEN
 
         var puntoMap = new OpenLayers.Feature.Vector( pt, {
             idBD : col[0],
+            idOrd: col[6],
             lat : col[2],
             lon : col[1],
             dir : col[3],
