@@ -19,11 +19,12 @@
          * de las librerias tiene que ser diferencte y el mapa tambien es diferente
          */
         if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
-            //Primero cargar OSM en IE
-            echo "<script language='javascript' type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>";
-            echo "<script language='javascript' type='text/javascript' src='dll/js/mapa_ie.js'></script>";
             //Segundo cargar OpenLayers en IE
-            echo "<script language='javascript' type='text/javascript' src='dll/js/openlayers/lib/OpenLayers.js'></script>";
+            
+            echo "<script language='javascript' type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>";
+            echo "<script language='javascript' type='text/javascript' src='dll/js/openlayers/OpenLayers.js'></script>";
+            echo "<script language='javascript' type='text/javascript' src='dll/js/mapa_ie.js'></script>";
+            //Primero cargar OSM en IE
         } else {
             //Primero cargar cargar OpenLayers en otros navegadores
             echo "<script language='javascript' type='text/javascript' src='dll/js/openlayers/lib/OpenLayers.js'></script>";
@@ -48,7 +49,7 @@
     <script type="text/javascript" src="core/js/gui/ventanaLocalizarParadaHora.js"></script>
 
     <script type="text/javascript" src="core/js/gui/RQ1_POPUP.js"></script>
-    
+
     <!-- RQ 2 -->
     <script type="text/javascript" src="core/js/core/RQ2_TrazarRuta.js"></script>
     <script type="text/javascript" src="core/js/core/LimpiarCapas.js"></script>
