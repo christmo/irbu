@@ -99,7 +99,7 @@ Ext.onReady(function(){
 **/
 function RQ3_limpiar_win(){
     RQ3Panel.getForm().reset();
-    RQ3Win.hide();
+    RQ3Win.close();
 }
 
 function RQ3_getWin(){
