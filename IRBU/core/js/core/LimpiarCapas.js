@@ -24,6 +24,10 @@ function limpiarCapaRecorridos(){
  */
 function limpiarCapaParadas(){
     lienzoParadas.destroyFeatures();
+    //Comprobar si existe algun popUp abierto
+    if (map.popups.length == 1) {
+        map.removePopup(map.popups[0]);
+    }
 }
 
 /**
