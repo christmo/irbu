@@ -8,19 +8,41 @@ var winLocParadaHorSec;
 var radioTipo = 'B';
 var phpComboRutas = "core/php/gui/comboRutas.php";
 var urlRutas = phpComboRutas+"?op="+radioTipo;//&id_rec=0";
+var spin;
 
 Ext.onReady(function(){
 
+    spin = new Ext.ux.form.Spinner({
+        fieldLabel: 'Hora de Recorrido',
+        name: 'hora',
+        value: '06:00',
+        strategy: new Ext.ux.form.Spinner.TimeStrategy({
+            minValue:'06:30',
+            maxValue:'21:00',
+            incrementValue: 30
+        }),
+        allowBlank:false,
+        emptyText:'Hora de recorrido...',
+        anchor:'98%'
+    });
+    
     contLocParadas = new Ext.FormPanel({
-        labelAlign: 'top',
         frame:true,
         bodyStyle:'padding:5px 5px 0',
-        labelWidth:60,
         width: 500,
 
         items: [{
             columnWidth:1,
             layout: 'form',
+            labelWidth:105,
+            items: [
+                spin
+            ]
+        },{
+            columnWidth:1,
+            layout: 'form',
+            labelAlign: 'top',
+            labelWidth:60,
             items: [{
                 xtype: 'radiogroup',
                 fieldLabel: 'Tipo de recorrido',
@@ -59,30 +81,12 @@ Ext.onReady(function(){
         },{
             layout:'column',
             items:[{
-                columnWidth:.25,
+                columnWidth:1,
                 layout: 'form',
-                bodyStyle:'padding:0px 0px 0px 5px',
+                labelWidth: 60,
+                labelAlign: 'top',
                 items: [
-                new Ext.ux.form.Spinner(
-                {
-                    fieldLabel: 'Hora de Recorrido',
-                    name: 'hora',
-                    value: '06:00',
-                    strategy: new Ext.ux.form.Spinner.TimeStrategy({
-                        minValue:'06:30',
-                        maxValue:'21:00',
-                        incrementValue: 30
-                    }),
-                    allowBlank:false,
-                    emptyText:'Hora de recorrido...',
-                    anchor:'98%'
-                })
-                ]
-            },{
-                columnWidth:.75,
-                layout: 'form',
-                items: [
-                comboRutas
+                    comboRutas
                 ]
             }]
         }
@@ -128,12 +132,20 @@ Ext.onReady(function(){
 });
 
 /**
+ * Obtiene la hora del spinner de las horas
+ */
+function getHora(){
+    hora = spin.getValue();
+    return hora;
+}
+
+/**
 * Recarga el combo de rutas para la ventana de Localizar Paradas
 */
 function recargarComboRutasParadas(){
     comboRutas.reset();
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
-    urlRutas = phpComboRutas +"?op="+ radioTipo;
+    urlRutas = phpComboRutas +"?op="+ radioTipo+"&hora="+getHora();
     op = radioTipo;
     storeRutas.proxy.conn.url = urlRutas;
     storeRutas.load();
@@ -193,7 +205,7 @@ var comboRutas = new Ext.form.ComboBox({
     resizable:true,
     minListWidth:300,
     selectOnFocus:true,
-    width: 340,
+    width: 455,
     listeners:{
         'select': seleccionarRuta
     }
@@ -214,7 +226,7 @@ function ventanaLocalizarParadaHora(){
             title:'Buscar paradas por hora y sector',
             resizable : false,
             width:500,
-            height:180,
+            height:205,
             closeAction:'hide',
             plain: false,
             items: [contLocParadas]
