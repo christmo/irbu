@@ -8,31 +8,29 @@ extract($_GET);
 $salida = "{failure:true}";
 
 //$consultaSql = "
-//            SELECT R.ID_RUTA, R.NOMBRE
-//            FROM RECORRIDO_RUTA R_R, RUTAS R
-//            WHERE ID_RECORRIDO='" . $id_rec . "' AND R_R.ID_RUTA = R.ID_RUTA AND R_R.ID_RUTA IN (
-//              SELECT RID.ID_RUTA
-//              FROM RUTAS RID
-//              WHERE RID.TIPO = '" . $op . "'
-//            )
-//            ";
+//    SELECT  R.ID_RUTA, R.NOMBRE
+//    FROM RUTAS R, RUTA_HORA RH
+//    WHERE R.ID_RUTA = RH.ID_RUTA
+//    AND RH.HORA = '" . $hora . "'
+//    AND R.TIPO = '" . $op . "'
+//    ";
 
 $consultaSql = "
             SELECT ID_RUTA,NOMBRE
             FROM rutas
-            WHERE TIPO = '".$op."'
+            WHERE TIPO = '" . $op . "'
             ";
 
 consulta($consultaSql);
 $resulset = variasFilas();
 
 $salida = "{\"rutas\": [";
-
+//htmlentities
 for ($i = 0; $i < count($resulset); $i++) {
     $fila = $resulset[$i];
     $salida .= "{
             \"id\":\"" . $fila["ID_RUTA"] . "\",
-            \"name\":\"" . htmlentities($fila["NOMBRE"]) . "\"
+            \"name\":\"" . utf8_encode($fila["NOMBRE"]) . "\"
         }";
     if ($i != count($resulset) - 1) {
         $salida .= ",";

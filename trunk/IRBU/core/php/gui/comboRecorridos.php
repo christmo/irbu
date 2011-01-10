@@ -21,7 +21,7 @@ for ($i = 0; $i < count($resulset); $i++) {
     $fila = $resulset[$i];
     $salida .= "{
             \"id\":\"" . $fila["ID_RECORRIDO"] . "\",
-            \"name\":\"" . $fila["NOMBRE"] . "\"
+            \"name\":\"" . utf8_encode($fila["NOMBRE"]) . "\"
         }";
     if ($i != count($resulset) - 1) {
         $salida .= ",";
