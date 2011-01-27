@@ -4,7 +4,7 @@ session_start();
 require_once('../../../dll/php/conexionBD.php');
 extract($_GET);
 
-$consultaSql = "SELECT RU.TIPO, RU.NOMBRE, R.HORA
+$consultaSql = "SELECT TIPO, NOMBRE, HORA
                 FROM RUTA_HORA R, (
                       SELECT ID_RUTA
                       FROM RUTA_PARADA
@@ -14,8 +14,9 @@ $consultaSql = "SELECT RU.TIPO, RU.NOMBRE, R.HORA
 
 $resulset = consultaJSON($consultaSql);
 $arr = array();
-while ($obj = mysql_fetch_object($resulset))
-    $arr[] = $obj;
+while ($obj = mysql_fetch_object($resulset)){
+    $arr[] = array( 'TIPO' => $obj->TIPO,'NOMBRE' => utf8_encode($obj->NOMBRE),'HORA' => $obj->HORA) ;   
+    }
 echo '' . json_encode($arr) . '';
 
 ?>
