@@ -10,6 +10,7 @@ $salida = "{failure:true}";
 $consultaSql = "
             SELECT ID_RECORRIDO,NOMBRE
             FROM RECORRIDOS
+            ORDER BY NOMBRE
             ";
 
 consulta($consultaSql);
