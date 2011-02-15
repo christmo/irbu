@@ -19,6 +19,7 @@ $consultaSql = "
             SELECT ID_RUTA,NOMBRE
             FROM rutas
             WHERE TIPO = '" . $op . "'
+            ORDER BY NOMBRE
             ";
 
 consulta($consultaSql);
