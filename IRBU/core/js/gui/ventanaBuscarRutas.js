@@ -78,7 +78,7 @@ Ext.onReady(function(){
                     failure: function (form, action) {
                         Ext.MessageBox.show({
                             title: 'Error...',
-                            msg: 'No hay un trazo posible en estas fechas y horas...',
+                            msg: 'No hay un trazo posible ',
                             buttons: Ext.MessageBox.OK,
                             icon: Ext.MessageBox.ERROR
                         });
