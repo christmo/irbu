@@ -79,6 +79,6 @@ function iconosInicioFin(coordPuntos){
     pFin.transform(new OpenLayers.Projection( "EPSG:4326" ),
         new OpenLayers.Projection( "EPSG:900913" ) );
     markerInicioFin.addMarker(new OpenLayers.Marker(pFin, iconFin));
-}
+    }
 
 
