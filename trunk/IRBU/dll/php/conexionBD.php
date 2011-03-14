@@ -7,9 +7,9 @@ $Consulta_ID = 0;
 $Errno = 0;
 $Error = "";
 $BaseDatos = "irbudata";
-$Servidor = "172.16.17.214";
-$Usuario = "irbudata";
-$Clave = "irbudata";
+$Servidor = "localhost";
+$Usuario = "root";
+$Clave = "";
 
 
 // Conectamos al servidor
