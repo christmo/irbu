@@ -43,7 +43,7 @@ function dibujarTrazado(coord){
         lienzoRecorridos.addFeatures([lineFeature]);
 
     }else{
-        alert ("NO HAY REGISTROS ENTRE ESA FECHA Y HORA");
+        alert ("NO HAY REGISTROS PARA ESA CONSULTA...");
     }
 }
 

@@ -3,7 +3,7 @@
 $Conexion_ID = 0;
 $Consulta_ID = 0;
 
-/* n�mero de error y texto error */
+/* numero de error y texto error */
 $Errno = 0;
 $Error = "";
 $BaseDatos = "irbudata";
