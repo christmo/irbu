@@ -43,7 +43,12 @@ function dibujarTrazado(coord){
         lienzoRecorridos.addFeatures([lineFeature]);
 
     }else{
-        alert ("NO HAY REGISTROS PARA ESA CONSULTA...");
+        Ext.MessageBox.show({
+                                title: 'Error',
+                                msg: 'Ups... Datos no encontrados',
+                                buttons: Ext.MessageBox.OK,
+                                icon: Ext.MessageBox.ERROR
+                            });
     }
 }
 
