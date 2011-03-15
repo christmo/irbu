@@ -20,7 +20,7 @@ Ext.onReady(function(){
             xtype: 'tbbutton',
             cls: 'x-btn-text-icon',
             icon: 'img/buscar.png',
-            text: 'B\xFAsqueda parada aproximada',
+            text: 'Parada mas Cercana',
             handler: function(){
                 capturarPuntoReferencia();
             }

@@ -63,7 +63,7 @@ Ext.onReady(function(){
                         failure: function (form, action) {
                             Ext.MessageBox.show({
                                 title: 'Error',
-                                msg: 'No se pudieron recuperar posiciones',
+                                msg: 'Ups... Datos no encontrados',
                                 buttons: Ext.MessageBox.OK,
                                 icon: Ext.MessageBox.ERROR
                             });
