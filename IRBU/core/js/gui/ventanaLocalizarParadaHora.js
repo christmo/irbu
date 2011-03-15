@@ -7,7 +7,7 @@ var contLocParadas;
 var winLocParadaHorSec;
 var radioTipo = 'B';
 var phpComboRutas = "core/php/gui/comboRutas.php";
-var urlRutas = phpComboRutas+"?op="+radioTipo;//&id_rec=0";
+var urlRutas = phpComboRutas+"?op="+radioTipo;
 var spin;
 
 Ext.onReady(function(){
@@ -36,7 +36,7 @@ Ext.onReady(function(){
             layout: 'form',
             labelWidth:105,
             items: [
-                spin
+            spin
             ]
         },{
             columnWidth:1,
@@ -86,7 +86,7 @@ Ext.onReady(function(){
                 labelWidth: 60,
                 labelAlign: 'top',
                 items: [
-                    comboRutas
+                comboRutas
                 ]
             }]
         }
@@ -96,7 +96,7 @@ Ext.onReady(function(){
             text: 'Graficar Paradas',
             handler: function() {
                 contLocParadas.getForm().submit({
-                    url : 'core/php/core/RQ4_ParadasRuta.php',
+                    url : 'core/php/core/RQ2_TrazadoRutas.php',
                     method:'POST',
                     waitMsg : 'Comprobando Datos...',
                     params:{
@@ -116,8 +116,11 @@ Ext.onReady(function(){
 
                         limpiarCapas();
 
+                        //dibujar la ruta en el mapa
+                        dibujarTrazado(resultado.datos.coordenadas);
+
                         // Dibujar las paradas en el mapa
-                        lienzosRecorridoHistorico(resultado.datos.coordenadas);
+                        buscarParadas(id_ruta, op);
 
                         //Limpia los datos del formulario y lo oculta
                         limpiar_datos_paradas();
@@ -140,6 +143,12 @@ function getHora(){
 }
 
 /**
+ * Permite controlar que no se haga una doble llamada al cambiar de opcion
+ * al escojer una ruta
+ */
+var i=0;
+
+/**
 * Recarga el combo de rutas para la ventana de Localizar Paradas
 */
 function recargarComboRutasParadas(){
@@ -147,8 +156,13 @@ function recargarComboRutasParadas(){
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
     urlRutas = phpComboRutas +"?op="+ radioTipo+"&hora="+getHora();
     op = radioTipo;
-    storeRutas.proxy.conn.url = urlRutas;
-    storeRutas.load();
+    if(i==0){
+        storeRutas.proxy.conn.url = urlRutas;
+        storeRutas.load();
+        i++;
+    }else{
+        i=0;
+    }
 }
 
 /* oculta la venta y limpia los datos no guardados */

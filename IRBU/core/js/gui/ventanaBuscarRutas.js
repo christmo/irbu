@@ -6,7 +6,7 @@ var contBuscarRutas;
 var winBuscarRutas;
 var radioTipo = 'B';
 var phpComboRutas = "core/php/gui/comboRutas.php";
-var urlBuscarRutas = phpComboRutas+"?op="+radioTipo;//&id_rec=0";
+var urlBuscarRutas = phpComboRutas+"?op="+radioTipo;
 
 Ext.onReady(function(){
 
@@ -93,7 +93,7 @@ Ext.onReady(function(){
                         dibujarTrazado(resultado.datos.coordenadas);
 
                         //dibujar las paradas en esa ruta
-                        buscarParadas();
+                        buscarParadas(id_ruta,radioTipo);
 
                         //Limpia los datos del formulario y lo oculta
                         limpiar_datos_rutas();
@@ -107,7 +107,7 @@ Ext.onReady(function(){
     });
 });
 
-function buscarParadas(){
+function buscarParadas(id_ruta,radioTipo){
     /**
      * Peticion de las paradas segun una ruta seleccionada
      */
@@ -131,6 +131,13 @@ function buscarParadas(){
     });  
 }
 
+
+/**
+ * Permite controlar que no se haga una doble llamada al cambiar de opcion
+ * al escojer una ruta
+ */
+var i=0;
+
 /**
 * Permite recargar el combo de nombres de rutas con nueva informacion
 * segun los parametros que se le envie en la url a traves de GET
@@ -138,9 +145,15 @@ function buscarParadas(){
 function recargarComboRutas(){
     cbxBuscarRutas.reset();
     radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
-    urlBuscarRutas = phpComboRutas +"?op="+ radioTipo; //+"&id_rec="+comboRecorridos.getValue();
-    storeBuscarRutas.proxy.conn.url = urlBuscarRutas;
-    storeBuscarRutas.load();
+    urlBuscarRutas = phpComboRutas +"?op="+ radioTipo; 
+
+    if(i==0){
+        storeBuscarRutas.proxy.conn.url = urlBuscarRutas;
+        storeBuscarRutas.load();
+        i++;
+    }else{
+        i=0;
+    }
 }
 
 /* oculta la venta y limpia los datos no guardados */
