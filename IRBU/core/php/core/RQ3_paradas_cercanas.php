@@ -13,7 +13,8 @@ $lat2 = $y + $factorLAT;
 $lon1 = $x - $factorLON;
 $lon2 = $x + $factorLON;
 
-$consultaSql = " SELECT ID_PARADA, DIRECCION, LAT, LON, REFERENCIA, DIR_IMG FROM PARADAS WHERE ( LON >= $lon1 AND LON <= $lon2 ) AND ( LAT >= $lat1 AND LAT <= $lat2)";
+$consultaSql = " SELECT ID_PARADA, DIRECCION, LAT, LON, REFERENCIA, DIR_IMG FROM
+PARADAS WHERE ( LON >= $lon1 AND LON <= $lon2 ) AND ( LAT >= $lat1 AND LAT <= $lat2)";
 
 consulta($consultaSql);
 $resulset = variasFilas();
