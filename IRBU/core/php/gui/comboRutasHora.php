@@ -8,10 +8,12 @@ extract($_GET);
 $salida = "{failure:true}";
 
 $consultaSql = "
-            SELECT ID_RUTA,NOMBRE
-            FROM rutas
-            WHERE TIPO = '".$op."'
-            ";
+    SELECT  R.ID_RUTA, R.NOMBRE
+    FROM RUTAS R, RUTA_HORA RH
+    WHERE R.ID_RUTA = RH.ID_RUTA
+    AND RH.HORA BETWEEN SUBTIME('" . $hora . "','0:15') AND ADDTIME('" . $hora . "','0:15')
+    AND R.TIPO = '" . $op . "'
+    ";
 
 consulta($consultaSql);
 $resulset = variasFilas();

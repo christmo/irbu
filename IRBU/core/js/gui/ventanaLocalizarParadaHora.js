@@ -7,7 +7,7 @@ var contLocParadas;
 var winLocParadaHorSec;
 var radioTipo = 'B';
 var hora = '6:30';
-var phpComboRutas = "core/php/gui/comboRutas.php";
+var phpComboRutas = "core/php/gui/comboRutasHora.php";
 var urlRutas = phpComboRutas+"?op="+radioTipo+"&hora="+hora;
 var spin;
 var id_ruta=0;
