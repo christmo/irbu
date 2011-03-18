@@ -23,7 +23,7 @@ function selectParada( feature ) {
     }
 //style='position: absolute;'
     var contenidoPopUp = "<div id='popid'  >"+dir+"<br /><center>"
-        + "<a href='" + img + "' title='"+dir+"'><img src='"
+        + "<a href='" + img + "' title='" + dir + " <br/> " + ref + "'><img src='"
         + img + "' width='100' height='75'/></a></center>"
         + ref + " <br /><center><div id= 'infoparada' onclick='RQ2_PopUP_getWin("+idBD+")'><b> Hora y Ruta</b></div></center></div>";
 

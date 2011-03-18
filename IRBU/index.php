@@ -39,6 +39,9 @@
     <body onload="init()">
         <div id="map" >
         </div>
+        <div style="position: absolute; bottom: 0px; right: 0px;" >
+                <img alt="www.kradac.com"  src='img/datap/credits.png'/>
+        </div>        
     </body>
 
     <script type="text/javascript" src="dll/js/ext-js/adapter/ext/ext-base.js"></script>
