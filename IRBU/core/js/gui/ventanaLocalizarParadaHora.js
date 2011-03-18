@@ -7,8 +7,8 @@ var contLocParadas;
 var winLocParadaHorSec;
 var radioTipo = 'B';
 var hora = '6:30';
-var phpComboRutas = "core/php/gui/comboRutasHora.php";
-var urlRutas = phpComboRutas+"?op="+radioTipo+"&hora="+hora;
+var phpComboRutasHora = "core/php/gui/comboRutasHora.php";
+var urlRutas = phpComboRutasHora+"?op="+radioTipo+"&hora="+hora;
 var spin;
 var id_ruta=0;
 var op='';
@@ -174,7 +174,7 @@ var i=0;
 function recargarComboRutasParadas(){
     comboRutas.reset();
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
-    urlRutas = phpComboRutas +"?op="+ radioTipo+"&hora="+getHora();
+    urlRutas = phpComboRutasHora +"?op="+ radioTipo+"&hora="+getHora();
     op = radioTipo;
     if(i==0){
         storeRutas.proxy.conn.url = urlRutas;
