@@ -58,6 +58,7 @@ function init(){
         controls : [
         new OpenLayers.Control.Navigation(),
         new OpenLayers.Control.PanZoomBar(),
+        //new OpenLayers.Control.ZoomToMaxExtent(),
         new OpenLayers.Control.KeyboardDefaults(),
         ],
         restrictedExtent : extent,
@@ -89,6 +90,8 @@ function init(){
             map.zoomTo(13);
         }
     });
+
+    map.zoomToMaxExtent();
 
     cargarCapas();   
 }

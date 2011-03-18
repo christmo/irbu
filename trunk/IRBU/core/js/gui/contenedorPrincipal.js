@@ -48,6 +48,16 @@ Ext.onReady(function(){
             handler: function(){
                 limpiarCapas();
             }
+        },'-',{
+            xtype: 'tbbutton',
+            cls: 'x-btn-text-icon',
+            icon: 'img/ayuda.png',
+            text: 'Ayuda',
+            handler: function(){
+                window.open ("img/ayuda.pdf","Ayuda KRADAC...");
+
+                //location.href='img/ayuda.pdf';
+            }
         }]
 
     };
