@@ -160,7 +160,11 @@ OpenLayers.Control.PanZoomBar = OpenLayers.Class(OpenLayers.Control.PanZoom, {
         this._addButton("pandown", "south-mini.png", centered.add(0, sz.h*2), sz);
         this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz);
         centered = this._addZoomBar(centered.add(0, sz.h*4 + 5));
-        this._addButton("zoomout", "zoom-minus-mini.png", centered, sz);
+        //this._addButton("zoomout", "zoom-minus-mini.png", centered, sz);
+        /**
+         * christmo -> Ubicación del menos al final de la barra de zoom recortada
+         */
+        this._addButton("zoomout", "zoom-minus-mini.png", new OpenLayers.Pixel(13, 147), sz);
         return this.div;
     },
 
@@ -193,7 +197,12 @@ OpenLayers.Control.PanZoomBar = OpenLayers.Class(OpenLayers.Control.PanZoom, {
         });
         
         var sz = new OpenLayers.Size();
-        sz.h = this.zoomStopHeight * this.map.getNumZoomLevels();
+        //sz.h = this.zoomStopHeight * this.map.getNumZoomLevels();
+        /**
+         * christmo -> recortada la barra de zoom para solo mostrar en el mapa
+         * el tamaño exacto de los niveles de zoom para loja
+         */
+        sz.h = 68;
         sz.w = this.zoomStopWidth;
         var div = null;
         
