@@ -9,7 +9,7 @@ $salida = "{failure:true}";
 
 $consultaSql = "
             SELECT ID_RUTA,NOMBRE
-            FROM rutas
+            FROM RUTAS
             WHERE TIPO = '".$op."'
             ";
 
