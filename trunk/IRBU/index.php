@@ -40,7 +40,9 @@
         <div id="map" >
         </div>
         <div style="position: absolute; bottom: 0px; right: 0px;" >
-                <img alt="www.kradac.com"  src='img/datap/credits.png'/>
+            <a href='http://www.kradac.com'>
+            <img alt="www.kradac.com"  src='img/datap/credits.png'/>
+            </a>
         </div>        
     </body>
 
@@ -73,7 +75,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
     <script type='text/javascript'>
         $(function() {
-            $('a').lightBox();
+            $('.photo').lightBox();
         });
     </script>
 </html>
