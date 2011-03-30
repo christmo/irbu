@@ -55,8 +55,6 @@ Ext.onReady(function(){
             text: 'Ayuda',
             handler: function(){
                 window.open ("img/ayuda.pdf","Ayuda KRADAC...");
-
-                //location.href='img/ayuda.pdf';
             }
         }]
 
