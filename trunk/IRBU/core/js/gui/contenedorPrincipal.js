@@ -51,6 +51,14 @@ Ext.onReady(function(){
         },'-',{
             xtype: 'tbbutton',
             cls: 'x-btn-text-icon',
+            icon: 'img/pantalla.png',
+            text: 'Pantalla Completa',
+            handler: function(){
+                window.open ("http://www.utpl.edu.ec/irbu/","IRBU");
+            }
+        },'-',{
+            xtype: 'tbbutton',
+            cls: 'x-btn-text-icon',
             icon: 'img/ayuda.png',
             text: 'Ayuda',
             handler: function(){

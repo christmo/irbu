@@ -2,24 +2,24 @@
  * CSS Reset
  * From Blueprint reset.css
  * http://blueprintcss.googlecode.com
- */
+*/
 
- /*Hacer que el mapa ocupe el 100% de la pantalla*/
+/*Hacer que el mapa ocupe el 100% de la pantalla*/
 html,body{
-	margin:0px;
-	height:100%;
-	width: 100%;
-	overflow: hidden;	/*Ocultar las barras de scroll*/
+    margin:0px;
+    height:100%;
+    width: 100%;
+    overflow: hidden;	/*Ocultar las barras de scroll*/
 }
 
 /**
  * Map Examples Specific
- */
+*/
 #map {
-	height: 100%;
-	width: 100%;
-	border: 1px solid black;
-        position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    position: absolute;
 }
 
 #popid {
@@ -54,4 +54,14 @@ html,body{
     width:10px;
     display:block;
     clear:none;
+}
+
+/*Imagenes de navegador*/
+.texto_navegador{
+    font-family: 'Courier New',Courier,monospace;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-style: normal;
 }
