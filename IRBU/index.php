@@ -1,5 +1,15 @@
-<?php ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+require_once('core/php/core/navegadores.php');
+$navegador = validarNavegador();
+
+if (!$navegador) {
+    /**
+     * Si el navegador no es valido se va a la pagina de descargar...
+     */
+    echo "<script>location.href='navegador.php'</script>";
+}
+?>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,18 +29,17 @@
          * de las librerias tiene que ser diferencte y el mapa tambien es diferente
          */
         if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
-            //Segundo cargar OpenLayers en IE
-            
-            echo "<script language='javascript' type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>";
-            echo "<script language='javascript' type='text/javascript' src='dll/js/openlayers/OpenLayers.js'></script>";
-            echo "<script language='javascript' type='text/javascript' src='dll/js/mapa_ie.js'></script>";
             //Primero cargar OSM en IE
+            echo "<script type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>\n";
+            //Segundo cargar OpenLayers en IE
+            echo "\t<script type='text/javascript' src='dll/js/openlayers/lib/OpenLayers.js'></script>\n";
+            echo "\t<script type='text/javascript' src='dll/js/mapa_ie.js'></script>\n";
         } else {
             //Primero cargar cargar OpenLayers en otros navegadores
-            echo "<script language='javascript' type='text/javascript' src='dll/js/openlayers/lib/OpenLayers.js'></script>";
+            echo "<script type='text/javascript' src='dll/js/openlayers/lib/OpenLayers.js'></script>\n";
             //Segundo cargar OSM en otros navegadores
-            echo "<script language='javascript' type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>";
-            echo "<script language='javascript' type='text/javascript' src='dll/js/mapa.js'></script>";
+            echo "\t<script type='text/javascript' src='dll/js/osm/OpenStreetMap.js'></script>\n";
+            echo "\t<script type='text/javascript' src='dll/js/mapa.js'></script>\n";
         }
         ?>
 
@@ -66,12 +75,12 @@
 
     <!-- spinner -->
     <link rel="stylesheet" type="text/css" href="dll/js/ext-js/ux/spinner/Spinner.css"/>
-    <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/Spinner.js"></script>
-    <script language="javascript" type="text/javascript" src="dll/js/ext-js/ux/spinner/SpinnerStrategy.js"></script>
+    <script type="text/javascript" src="dll/js/ext-js/ux/spinner/Spinner.js"></script>
+    <script type="text/javascript" src="dll/js/ext-js/ux/spinner/SpinnerStrategy.js"></script>
 
     <!--  RQ1 TRATAMIENTO DE IMAGENES  -->
-    <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.js"></script>
-    <script language="javascript" type="text/javascript" src="dll/js/jquery/jquery.lightbox-0.5.js"></script>
+    <script type="text/javascript" src="dll/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="dll/js/jquery/jquery.lightbox-0.5.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
     <script type='text/javascript'>
         $(function() {
