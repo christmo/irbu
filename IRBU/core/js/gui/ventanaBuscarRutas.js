@@ -131,13 +131,6 @@ function buscarParadas(id_ruta,radioTipo){
     });  
 }
 
-
-/**
- * Permite controlar que no se haga una doble llamada al cambiar de opcion
- * al escojer una ruta
- */
-var i=0;
-
 /**
 * Permite recargar el combo de nombres de rutas con nueva informacion
 * segun los parametros que se le envie en la url a traves de GET
@@ -145,14 +138,11 @@ var i=0;
 function recargarComboRutas(){
     cbxBuscarRutas.reset();
     radioTipo =  contBuscarRutas.getForm().getValues()['rbTipo'];
-    urlBuscarRutas = phpComboRutas +"?op="+ radioTipo; 
 
-    if(i==0){
+    if(typeof radioTipo!="undefined"){
+        urlBuscarRutas = phpComboRutas +"?op="+ radioTipo;
         storeBuscarRutas.proxy.conn.url = urlBuscarRutas;
         storeBuscarRutas.load();
-        i++;
-    }else{
-        i=0;
     }
 }
 
