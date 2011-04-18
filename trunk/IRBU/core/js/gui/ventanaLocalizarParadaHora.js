@@ -163,12 +163,6 @@ function getHora(){
 }
 
 /**
- * Permite controlar que no se haga una doble llamada al cambiar de opcion
- * al escojer una ruta
- */
-var i=0;
-
-/**
 * Recarga el combo de rutas para la ventana de Localizar Paradas
 */
 function recargarComboRutasParadas(){
@@ -176,12 +170,10 @@ function recargarComboRutasParadas(){
     var radioTipo =  contLocParadas.getForm().getValues()['rbTipo'];
     urlRutas = phpComboRutasHora +"?op="+ radioTipo+"&hora="+getHora();
     op = radioTipo;
-    if(i==0){
+
+    if(typeof radioTipo!="undefined"){
         storeRutas.proxy.conn.url = urlRutas;
         storeRutas.load();
-        i++;
-    }else{
-        i=0;
     }
 }
 
