@@ -16,6 +16,7 @@ function getBrowser() {
     }
 
     // Next get the name of the useragent yes seperately and for good reason
+    $ub = "";
     if (preg_match('/MSIE/i', $u_agent) && !preg_match('/Opera/i', $u_agent)) {
         $bname = 'Internet Explorer';
         $ub = "MSIE";
@@ -93,4 +94,4 @@ function validarNavegador() {
 //$yourbrowser = $ua['nombre'] . "Your browser: " . $ua['name'] . " " . $ua['version'] . " on " . $ua['platform'] . " reports: <br >" . $ua['userAgent'];
 //print_r($yourbrowser);
 //
-?> 
+?>

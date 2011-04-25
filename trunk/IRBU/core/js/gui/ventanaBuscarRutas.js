@@ -110,7 +110,7 @@ Ext.onReady(function(){
 function buscarParadas(id_ruta,radioTipo){
     /**
      * Peticion de las paradas segun una ruta seleccionada
-     */
+     */    
     Ext.Ajax.request({
         url: 'core/php/core/RQ4_ParadasRuta.php',
         method: 'POST',
@@ -128,7 +128,7 @@ function buscarParadas(id_ruta,radioTipo){
             id_ruta: id_ruta,
             tipo: radioTipo
         }
-    });  
+    });
 }
 
 /**
